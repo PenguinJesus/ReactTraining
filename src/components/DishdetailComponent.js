@@ -1,6 +1,6 @@
 import React from 'react';
-import {Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle} from 'reactstrap';
-
+import {Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbItem} from 'reactstrap';
+import {Link} from 'react-router-dom';
 
 
 
@@ -20,20 +20,21 @@ import {Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle} from 'reac
 
 
 
-    function RenderComments({dish}){
-        if(dish['comments'] != null){
+    function RenderComments({comments}){
+        console.log('comments: ', comments)
+        if(comments != null){
             return(
                 <div className='col-12 col-md-5 m-1'>
                     <h4>Comments</h4>
                     <ul className='list-group list-unstyled'>
-                        {dish['comments'].map((comments) =>{
+                        {comments.map((comments) =>{
                             return(
                                 <div>
                                     <li>
-                                        {comments['comment']}
+                                        {comments.comment}
                                     </li>
                                     <li>
-                                        -- {comments['author']}, {new Intl.DateTimeFormat('en-US', {year:'numeric', month:'short', day:'numeric'}).format(new Date(Date.parse(comments['date'])))}
+                                        -- {comments.author}, {new Intl.DateTimeFormat('en-US', {year:'numeric', month:'short', day:'numeric'}).format(new Date(Date.parse(comments['date'])))}
                                     </li>
                                 </div>
                             )
@@ -60,10 +61,16 @@ const DishDetail=(props)=> {
     if(dish != null){
         return(
             <div className='container'>
+                <Breadcrumb>
+                    <BreadcrumbItem>
+                        <Link to='/menu'>Menu</Link>
+                    </BreadcrumbItem>
+                    <BreadcrumbItem active>{dish.name}</BreadcrumbItem>
+                </Breadcrumb>
                 <div className='row'>
-                    {console.log(dish)}
+                    {console.log('dish: ',dish)}
                     <RenderDish dish={dish} />
-                    <RenderComments dish={dish} />
+                    <RenderComments comments={props.comments} />
                 </div>
             </div>
         );
