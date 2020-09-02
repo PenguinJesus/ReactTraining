@@ -1,17 +1,9 @@
 import React from 'react';
-<<<<<<< HEAD
 import {Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle} from 'reactstrap';
 
 
 
 
-=======
-import {Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbItem} from 'reactstrap';
-import {Link} from 'react-router-dom';
-
-
-
->>>>>>> aabce6485f0e39f14c1eef2f2782664d47b1d7cc
     function RenderDish({dish}){
         return (
             <div className='col-12 col-md-5 m-1'>
@@ -28,30 +20,20 @@ import {Link} from 'react-router-dom';
 
 
 
-<<<<<<< HEAD
     function RenderComments({dish}){
         if(dish['comments'] != null){
-=======
-    function RenderComments({comments}){
-        console.log('comments: ', comments)
-        if(comments != null){
->>>>>>> aabce6485f0e39f14c1eef2f2782664d47b1d7cc
             return(
                 <div className='col-12 col-md-5 m-1'>
                     <h4>Comments</h4>
                     <ul className='list-group list-unstyled'>
-                        {comments.map((comments) =>{
+                        {dish['comments'].map((comments) =>{
                             return(
                                 <div>
                                     <li>
-                                        {comments.comment}
+                                        {comments['comment']}
                                     </li>
                                     <li>
-<<<<<<< HEAD
                                         -- {comments['author']}, {new Intl.DateTimeFormat('en-US', {year:'numeric', month:'short', day:'numeric'}).format(new Date(Date.parse(comments['date'])))}
-=======
-                                        -- {comments.author}, {new Intl.DateTimeFormat('en-US', {year:'numeric', month:'short', day:'numeric'}).format(new Date(Date.parse(comments['date'])))}
->>>>>>> aabce6485f0e39f14c1eef2f2782664d47b1d7cc
                                     </li>
                                 </div>
                             )
@@ -78,23 +60,10 @@ const DishDetail=(props)=> {
     if(dish != null){
         return(
             <div className='container'>
-<<<<<<< HEAD
                 <div className='row'>
                     {console.log(dish)}
                     <RenderDish dish={dish} />
                     <RenderComments dish={dish} />
-=======
-                <Breadcrumb>
-                    <BreadcrumbItem>
-                        <Link to='/menu'>Menu</Link>
-                    </BreadcrumbItem>
-                    <BreadcrumbItem active>{dish.name}</BreadcrumbItem>
-                </Breadcrumb>
-                <div className='row'>
-                    {console.log('dish: ',dish)}
-                    <RenderDish dish={dish} />
-                    <RenderComments comments={props.comments} />
->>>>>>> aabce6485f0e39f14c1eef2f2782664d47b1d7cc
                 </div>
             </div>
         );
