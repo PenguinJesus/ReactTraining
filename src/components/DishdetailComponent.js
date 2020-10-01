@@ -22,7 +22,7 @@ import { baseUrl } from '../shared/baseUrl';
 
 
 
-    function RenderComments({comments, addComment, dishId}){
+    function RenderComments({comments, postComment, dishId}){
         console.log('comments: ', comments)
         if(comments != null){
             return(
@@ -42,7 +42,7 @@ import { baseUrl } from '../shared/baseUrl';
                             )
                         })}
                     </ul>
-                    <CommentForm addComment={addComment} dishId={dishId}/>
+                    <CommentForm postComment={postComment} dishId={dishId}/>
                 </div>
             );
         } else{
@@ -83,14 +83,14 @@ class CommentForm extends Component {
 
     commentSubmit(values){
         this.commentModal(this.state.commentModalToggle);
-        this.props.addComment(this.props.dishId, values.rating, values.author, values.comment)
+        this.props.postComment(this.props.dishId, values.rating, values.author, values.comment)
     }
 
 
     render(){
         return(
             <div>
-                <Button outline color='secondary' onClick={()=>this.commentModal(this.state.commentModalToggle)} ><span className='fa fa-pencil'></span> Button</Button>
+                <Button outline color='secondary' onClick={()=>this.commentModal(this.state.commentModalToggle)} ><span className='fa fa-pencil'></span> Submit comment</Button>
 
                 <Modal isOpen={this.state.commentModalToggle} toggle={this.commentModal}>
                     <ModalHeader  toggle={this.commentModal}>Submit Comment</ModalHeader>
@@ -167,7 +167,7 @@ const DishDetail=(props)=> {
                 <div className='row'>
                     {console.log('dish: ',dish)}
                     <RenderDish dish={dish} />
-                    <RenderComments comments={props.comments} addComment = {props.addComment} dishId={props.dish.id}/>
+                    <RenderComments comments={props.comments} postComment = {props.postComment} dishId={props.dish.id}/>
                 </div>
             </div>
         );

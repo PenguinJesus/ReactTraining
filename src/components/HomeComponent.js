@@ -13,7 +13,6 @@ function RenderCard({item, isLoading, errMess}){
         <h4>{errMess}</h4>
         );
     }
-    console.log('item: ', item)
     return(
         <Card>
             <CardImg src={baseUrl + item.image} alt={item.name} />
@@ -29,7 +28,6 @@ function RenderCard({item, isLoading, errMess}){
 }
 
 function Home (props){
-    console.log('props: ', props.dish)
     return(
         <div className='container'>
             <div className='row align-items-start'>
