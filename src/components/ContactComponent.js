@@ -19,8 +19,8 @@ class Contact extends Component {
 
 
     handleSubmit(values){
-        console.log('Current state: ', JSON.stringify(values));
-        alert('Current state: ' + JSON.stringify(values));
+        console.log('contactcomponent values: ', values)
+        this.props.postFeedback(values);
         this.props.resetFeedbackForm();
     }
 
@@ -93,7 +93,7 @@ class Contact extends Component {
                             <Row className='form-group'>
                                 <Label htmlFor='email' md={2}>Email</Label>
                                 <Col md={10}>
-                                    <Control.text model='.email'className='form-control' id='email' name='email' placeholder='Email' validators={{required, validEmail}}/>
+                                    <Control.text model='.email'className='form-control' id='email' name='email' placeholder='Email' /> {/*validators={{required, validEmail}}*/}
                                     <Errors className='text-danger' model='.email' show='touched' messages={{required:'Required',validEmail:'Invalid email address'}} ></Errors>
                                     
                                 </Col>
